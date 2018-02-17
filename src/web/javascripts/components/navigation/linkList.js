@@ -4,13 +4,11 @@ import Link from './link';
 class LinkList extends React.Component {
   render() {
     return (
-      <div className="links">
-        <ul>
-          {this.props.links.map(link => (
-            <Link key={link.path} name={link.name} path={link.path} />
-          ))}
-        </ul>
-      </div>
+      <ul className="links">
+        {this.props.links.map(link => (
+          <Link key={link.path} name={link.name} path={link.path} />
+        ))}
+      </ul>
     );
   }
 }
