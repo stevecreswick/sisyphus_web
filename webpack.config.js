@@ -42,5 +42,7 @@ module.exports = {
 
   devServer: {
     hot: true
-  }
+  },
+
+  cache: false
 };
