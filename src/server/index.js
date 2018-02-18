@@ -1,13 +1,15 @@
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const morgan = require('koa-morgan');
+const router = require('koa-router');
 const render = require('koa-ejs');
 const serve = require('koa-static');
+const mount = require('koa-mount');
+
 const path = require('path');
 const hephaestus = require('./../../webpack/hephaestus');
 
 const app = new Koa();
-const indexRoutes = require('./routes/index');
 const views = path.join( process.cwd(), 'public' );
 const assets = path.join( process.cwd(), 'public' );
 
@@ -27,6 +29,13 @@ const assets = path.join( process.cwd(), 'public' );
 // Serve Static Files in Assets
 // ------------------------------------------------
 app.use(serve(assets));
+
+// ------------------------------------------------
+// Define Routes
+// ------------------------------------------------
+app.use(function *(){
+  serve( views )
+});
 
 // ------------------------------------------------
 // Build Production Index and Javascripts

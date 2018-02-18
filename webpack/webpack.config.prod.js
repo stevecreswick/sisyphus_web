@@ -3,9 +3,15 @@ const webpack = require('webpack');
 const loaders = require( './webpack.config.loaders' );
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractSass = new ExtractTextPlugin({
-    filename: "[name].[contenthash].css",
-    disable: process.env.NODE_ENV === "development"
+    filename: '[name].[contenthash].css',
+    disable: process.env.NODE_ENV === 'development'
 });
+
+console.log('ENV ', process.env.NODE_ENV );
+let assetPath;
+process.env.NODE_ENV === 'production' ?
+  assetPath = process.env.ASSET_PATH || '/assets' :
+  assetPath = process.env.ASSET_PATH || '';
 
 const appRoot = process.cwd();
 var appSource = path.join( appRoot, 'src/web', 'javascripts', 'application' );
@@ -18,8 +24,8 @@ module.exports = {
   ],
 
   output: {
-    path: path.join( appRoot, 'public/assets'),
-    filename: 'bundle.js'
+    path: path.join( appRoot, 'public'),
+    filename: 'assets/bundle.js'
   },
 
   plugins: [
@@ -30,6 +36,11 @@ module.exports = {
         warnings: false
       }
     }),
+
+    // new webpack.DefinePlugin({
+    //   'process.env.ASSET_PATH': JSON.stringify(assetPath)
+    // }),
+
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify( 'production' ),
