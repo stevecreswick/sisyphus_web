@@ -1,12 +1,12 @@
 import React from 'react';
-import Link from './link';
+import NavLink from './navLink';
 
 class LinkList extends React.Component {
   render() {
     return (
       <ul className="links">
         {this.props.links.map(link => (
-          <Link key={link.path} name={link.name} path={link.path} />
+          <NavLink key={link.path} name={link.name} path={link.path} />
         ))}
       </ul>
     );
