@@ -1,0 +1,104 @@
+.scene {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left:0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  // Alchemist Lab *
+  background-image: linear-gradient(20deg, #d558c8 12%, #24d292 100%);
+
+
+  .scene-inner-container {
+    height: 100%;
+    width: 100%;
+    @include flex-container(column, nowrap, inherit, flex-end);
+    overflow: hidden;
+  }
+}
+
+.mountains,
+.ground {
+  color: rgba(0,0,0,0);
+}
+
+.mountains {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  height: 600px;
+  margin: 12em auto 0;
+  padding: 5em 0;
+  overflow: hidden;
+  margin-bottom: -400px;
+
+  .mountain {
+    box-sizing: border-box;
+    // position: absolute;
+    transform: rotate(-45deg);
+  }
+
+  /*left to right*/
+  .mountain-1{
+    width: 250px;
+    height: 250px;
+    margin-top: 1em;
+    background: #48352D;
+    z-index: 3;
+  }
+
+  /**primary mountain**/
+  .mountain-2{
+    width: 300px;
+    height: 300px;
+    margin-top: -1em;
+    margin-left: -5em;
+    background: linear-gradient(-225deg, #A43300, #7D4D39 50%, #48352D 50%);
+    z-index: 1;
+  }
+
+  .mountain-3{
+    width: 230px;
+    height: 230px;
+    margin-top: -2em;
+    margin-left: -5.5em;
+    background: #48352D;
+    z-index: 4;
+  }
+
+  .mountain-4{
+    width: 200px;
+    height: 200px;
+    margin-left: -4em;
+    background: #48352D;
+    z-index: 5;
+  }
+
+  .override-shade {
+    background: #48352D;
+  }
+
+  .offset-mountain {
+    margin-left: -100px;
+  }
+
+  .main-mountain {
+    // height: 400px;
+    // width: 400px;
+
+  }
+}
+
+.ground {
+  z-index: 5;
+  height: 200px;
+  width: 100%;
+  background: linear-gradient(180deg, transparent, transparent 40%, #1E302A 40%);
+  // background-color: #4C1900;
+}

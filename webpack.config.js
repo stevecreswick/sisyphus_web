@@ -41,7 +41,10 @@ module.exports = {
   },
 
   devServer: {
-    hot: true
+    hot: true,
+    historyApiFallback: true,
+    inline: true,
+    progress: true
   },
 
   cache: false
