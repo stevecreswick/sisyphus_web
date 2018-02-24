@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as rocksActions from '../store/rocks/actions';
 import * as rocksSelectors from '../store/rocks/reducer';
 
-import ListView from '../components/grids/ListView';
-import ListRow from '../components/grids/ListRow';
+import Rocks from '../components/rocks/rocks';
 
 class Tartarus extends Component {
   constructor(props){
@@ -14,17 +14,15 @@ class Tartarus extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(rocksActions.fetchRocks());
+    this.props.actions.fetchRocks();
   }
 
   render() {
-    if (!this.props.rocksByName) return this.renderLoading();
+    if (!this.props.activeRocks) return this.renderLoading();
     return (
       <div className="rocks-screen">
-        <ListView
-          rowsIdArray={this.props.rocksNameArray}
-          rowsById={this.props.rocksByName}
-          renderRow={this.renderRow}
+        <Rocks rocks={this.props.activeRocks}
+               actions={this.props.actions}
         />
       </div>
     )
@@ -50,14 +48,17 @@ class Tartarus extends Component {
   }
 }
 
-// which props do we want to inject, given the global store state?
 function mapStateToProps(state) {
-  const [ rocksByName, rocksNameArray ] = rocksSelectors.getRocks(state);
+  const [ activeRocks, activeRocksArray ] = rocksSelectors.getRocks(state);
 
   return {
-    rocksByName,
-    rocksNameArray
+    activeRocks,
+    activeRocksArray
   };
 }
 
-export default connect(mapStateToProps)(Tartarus);
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(rocksActions, dispatch) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tartarus);

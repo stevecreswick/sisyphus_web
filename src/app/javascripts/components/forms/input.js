@@ -1,17 +1,16 @@
 import React from 'react';
 
-const Input = ({ input, label, type, placeholder, style, meta }: Props) =>
-  <div style={{ marginBottom: '1rem' }}>
+const Input = ( { input, label, type, placeholder, meta: { touched, error } } ) =>
+  <div>
     {label && <label htmlFor={input.name}>{label}</label>}
     <input
       {...input}
       type={type}
       placeholder={placeholder}
       className="form-control"
-      style={style && style}
     />
     {meta.touched && meta.error &&
-      <div style={{ fontSize: '85%', color: 'rgb(255,59,48)' }}>{meta.error}</div>
+      <div>{meta.error}</div>
     }
   </div>;
 

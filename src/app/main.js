@@ -5,27 +5,30 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 // Redux
-import store from './store';
+import store from './javascripts/store';
 
 // Stylesheets
-import stylesheets from '../stylesheets/application.scss';
+import stylesheets from './stylesheets/application.scss';
 
 // Components
 // Shared
-import Navigation from './containers/navigation';
+import Navigation from './javascripts/containers/navigation';
 
 // Pages
 
 // TODO: Current Project
 // Seeing Tasks and Task Management
-import Tartarus from './containers/tartarus';
+import Tartarus from './javascripts/containers/tartarus';
+
+// TODO: Import Actions and Pass through as Props
+// TODO: Add PropTypes
 
 // Future
-import Welcome from './containers/welcome';
-import Mountains from './containers/mountains';
-import Persephone from './containers/persephone';
-import User from './containers/user';
-import NotFound from './containers/notFound';
+import Welcome from './javascripts/containers/welcome';
+import Mountains from './javascripts/containers/mountains';
+import Persephone from './javascripts/containers/persephone';
+import User from './javascripts/containers/user';
+import NotFound from './javascripts/containers/notFound';
 
 const links = [
   {

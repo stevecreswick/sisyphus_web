@@ -1,0 +1,6 @@
+export const ADD_ROCK = 'ADD_ROCK'
+export const DELETE_ROCK = 'DELETE_ROCK'
+export const EDIT_ROCK = 'EDIT_ROCK'
+export const COMPLETE_ROCK = 'COMPLETE_ROCK'
+export const COMPLETE_ALL = 'COMPLETE_ALL'
+export const CLEAR_COMPLETED = 'CLEAR_COMPLETED'

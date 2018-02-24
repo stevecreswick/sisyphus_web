@@ -1,0 +1,4 @@
+export const ROCKS_FETCHED = 'rocks.ROCKS_FETCHED';
+export const CREATE_ROCK_SUCCESS = 'rocks.CREATE_ROCK_SUCCESS';
+export const EDIT_ROCK_SUCCESS = 'rocks.EDIT_ROCK_SUCCESS';
+export const COMPLETE_ROCK_SUCCESS = 'rocks.COMPLETE_ROCK_SUCCESS';
