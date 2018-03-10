@@ -7,6 +7,7 @@
 // Components
 @import 'components/navigation';
 @import 'components/mountains';
+@import 'components/rock';
 
 *:before,
 *:after {
@@ -94,4 +95,14 @@ a {
     height: 100%;
     position: relative;
   }
+}
+
+button {
+  height: 40px;
+  width: 40px
+}
+
+.row {
+  margin: 8px 0;
+  @include flex-container(row, nowrap, center, center);
 }
