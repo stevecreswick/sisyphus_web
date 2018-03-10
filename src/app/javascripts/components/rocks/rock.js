@@ -32,6 +32,9 @@ export default class Rock extends Component {
 
   render() {
     const { rock, completeRock, deleteRock } = this.props;
+    const buttonClass = classnames( {
+      'active': rock.active
+    } );
 
     let element;
 
@@ -46,20 +49,19 @@ export default class Rock extends Component {
     }
     else {
       element = (
-        <div className="view">
-          <input
-            className="toggle"
-            type="checkbox"
-            checked={!rock.active}
-            onChange={ () => completeRock(rock) }
-          />
-          <label onDoubleClick={this.handleDoubleClick}>
-            {rock.name}
-          </label>
-          <button
-            className="destroy"
-            onClick={() => deleteRock( rock.id )}
-          />
+        <div className="rock">
+          <div className="row">
+            <button
+              className={buttonClass}
+              onClick={ () => completeRock(rock) }
+            />
+          </div>
+
+          <div className="row">
+            <label onDoubleClick={this.handleDoubleClick}>
+              {rock.name}
+            </label>
+          </div>
         </div>
       );
     }

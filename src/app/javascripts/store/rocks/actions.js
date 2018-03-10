@@ -15,10 +15,11 @@ export function fetchRocks() {
   };
 }
 
-export function addRock(data, router) {
+export function addRock( rock, router ) {
   return async(dispatch, getState) => {
     try {
-      const newRock = await api.post('/rocks', data);
+      const post = await api.post('/rocks', rock );
+      const newRock = post.data[ 0 ];
       dispatch({ type: types.CREATE_ROCK_SUCCESS, newRock });
     } catch(error) {
       console.error(error);
@@ -37,13 +38,16 @@ export function deleteRock( rock ) {
 }
 
 export function completeRock( rock ) {
+  console.log('COMPLETing ', rock);
   return async(dispatch, getState) => {
     try {
       const update = await api.patch(`/rocks/${ rock.id }`, { 'active': !rock.active } );
       const updatedRock = update.data[ 0 ];
+      console.log('THIS WAS SUCCESS');
       dispatch({ type: types.COMPLETE_ROCK_SUCCESS, updatedRock });
     }
     catch(err) {
+      console.log('HERE');
       console.error(err);
     }
   }

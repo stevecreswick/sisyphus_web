@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as rocksActions from '../store/rocks/actions';
 import * as rocksSelectors from '../store/rocks/reducer';
-
+import PropTypes from 'prop-types';
 import Rocks from '../components/rocks/rocks';
 
 class Tartarus extends Component {

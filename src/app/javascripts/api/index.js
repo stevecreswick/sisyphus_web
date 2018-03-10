@@ -1,8 +1,9 @@
 const API = process.env.API_URL || 'http://localhost:1337/api/v1';
 
-function headers() {
+function headers( additionalHeaders ) {
   // const token = JSON.parse(localStorage.getItem('token'));
-
+  console.log( additionalHeaders );
+  console.log('additional header');
   return {
     Accept: 'application/json',
     'Content-Type': 'application/json'
@@ -37,7 +38,6 @@ export default {
 
   post(url, data) {
     const body = JSON.stringify(data);
-
     return fetch(`${API}${url}`, {
       method: 'POST',
       headers: headers(),
@@ -48,10 +48,14 @@ export default {
 
   patch(url, data) {
     const body = JSON.stringify(data);
-
     return fetch(`${API}${url}`, {
       method: 'PATCH',
-      headers: headers(),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Request-Method': 'PATCH'
+        // Authorization: `Bearer: ${token}`,
+      },
       body,
     })
     .then(parseResponse);
