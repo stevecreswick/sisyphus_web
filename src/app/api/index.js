@@ -1,9 +1,7 @@
-const API = process.env.API_URL || 'http://localhost:1337/api/v1';
+const API = process.env.API_URL || 'http://localhost:8008/api/v1';
 
 function headers( additionalHeaders ) {
   // const token = JSON.parse(localStorage.getItem('token'));
-  console.log( additionalHeaders );
-  console.log('additional header');
   return {
     Accept: 'application/json',
     'Content-Type': 'application/json'
@@ -12,12 +10,9 @@ function headers( additionalHeaders ) {
 }
 
 function parseResponse(response) {
-  return response.json().then((json) => {
-    if (!response.ok) {
-      return Promise.reject(json);
-    }
-    return json;
-  });
+  return response.json().then(
+    ( json ) => !response.ok ? Promise.reject( json ) : json
+  );
 }
 
 function queryString(params) {
@@ -41,7 +36,7 @@ export default {
     return fetch(`${API}${url}`, {
       method: 'POST',
       headers: headers(),
-      body,
+      body: body
     })
     .then(parseResponse);
   },
@@ -50,13 +45,8 @@ export default {
     const body = JSON.stringify(data);
     return fetch(`${API}${url}`, {
       method: 'PATCH',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Request-Method': 'PATCH'
-        // Authorization: `Bearer: ${token}`,
-      },
-      body,
+      headers: headers(),
+      body
     })
     .then(parseResponse);
   },

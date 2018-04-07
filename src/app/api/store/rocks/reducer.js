@@ -8,26 +8,29 @@ const initialState = Immutable({
 
 export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
-    case types.ROCKS_FETCHED:
-    console.log('FETCH STATE ', state );
 
+    // Received Rocks from the Server
+    case types.ROCKS_FETCHED:
       return state.merge({
         activeRocks: action.rocksByName
       });
+
+    // Created a new Rock
     case types.CREATE_ROCK_SUCCESS:
-    console.log('CR STATE ', state );
       return state.merge({
         ...state,
-        activeRocks: [...state, action.newRock ]
+        activeRocks: [ ...state.activeRocks, action.newRock ]
       });
+
+    // Task Finished
     case types.COMPLETE_ROCK_SUCCESS:
       const updateRock = ( updatedRock ) => {
-        return state.activeRocks.map( rock =>
-          rock.id === updatedRock.id ?
-            { ...rock, active: !rock.active } :
-            rock
-        );
-      };
+        return state.activeRocks.map(rock =>
+          rock.id === updatedRock.id
+            ? { ...rock, active: !rock.active }
+            : rock
+        )
+      }
 
       return state.merge({
         ...state,

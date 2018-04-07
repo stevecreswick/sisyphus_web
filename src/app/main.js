@@ -5,30 +5,30 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 // Redux
-import store from './javascripts/store';
+import store from './store';
 
 // Stylesheets
 import stylesheets from './stylesheets/application.scss';
 
 // Components
 // Shared
-import Navigation from './javascripts/containers/navigation';
+import Header from './containers/header';
 
 // Pages
 
 // TODO: Current Project
 // Seeing Tasks and Task Management
-import Tartarus from './javascripts/containers/tartarus';
+import Tartarus from './containers/tartarus';
 
 // TODO: Import Actions and Pass through as Props
 // TODO: Add PropTypes
 
 // Future
-import Welcome from './javascripts/containers/welcome';
-import Mountains from './javascripts/containers/mountains';
-import Persephone from './javascripts/containers/persephone';
-import User from './javascripts/containers/user';
-import NotFound from './javascripts/containers/notFound';
+import Welcome from './containers/welcome';
+import Mountains from './containers/mountains';
+import Persephone from './containers/persephone';
+import User from './containers/user';
+import NotFound from './containers/notFound';
 
 const links = [
   {
@@ -60,7 +60,7 @@ class Sisyphus extends React.Component {
     return (
         <Router>
           <div className="current-page">
-            <Navigation links={links} appName={title} />
+            <Header links={links} appName={title} />
 
             <Switch>
               <Route exact path='/' component={ Welcome }/>
