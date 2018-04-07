@@ -2,7 +2,7 @@ import React from 'react';
 import Logo from './../components/navigation/logo';
 import LinkList from './../components/navigation/linkList';
 
-class Navigation extends React.Component {
+class Header extends React.Component {
   render() {
     return (
     <div className="navigation">
@@ -13,4 +13,4 @@ class Navigation extends React.Component {
   }
 }
 
-export default Navigation;
+export default Header;

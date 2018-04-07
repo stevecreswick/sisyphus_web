@@ -7,14 +7,14 @@ const extractSass = new ExtractTextPlugin({
     disable: process.env.NODE_ENV === 'development'
 });
 
-console.log('ENV ', process.env.NODE_ENV );
 let assetPath;
+
 process.env.NODE_ENV === 'production' ?
   assetPath = process.env.ASSET_PATH || '/assets' :
   assetPath = process.env.ASSET_PATH || '';
 
 const appRoot = process.cwd();
-var appSource = path.join( appRoot, 'src/web', 'javascripts', 'application' );
+var appSource = path.join( appRoot, 'src/web', 'application' );
 
 module.exports = {
   devtool: 'source-map',

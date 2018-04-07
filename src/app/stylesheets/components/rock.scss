@@ -1,0 +1,13 @@
+.rock {
+  width: 180px;
+  border: 1px solid black;
+  background-color: white;
+
+  button {
+    background-color: ghostwhite;
+
+    &.active {
+      background-color: magenta;
+    }
+  }
+}

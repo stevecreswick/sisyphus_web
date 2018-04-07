@@ -1,17 +1,20 @@
+const path = require('path');
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const morgan = require('koa-morgan');
-const router = require('koa-router');
+const Router = require('koa-router');
 const render = require('koa-ejs');
 const serve = require('koa-static');
 const mount = require('koa-mount');
 
-const path = require('path');
 const hephaestus = require('./../../webpack/hephaestus');
 
 const app = new Koa();
+const router = new Router();
+
 const views = path.join( process.cwd(), 'public' );
 const assets = path.join( process.cwd(), 'public' );
+const indexTemplate = path.join( views, 'index.html' );
 
 // ------------------------------------------------
 // Serve HTML Files - Handled By Koa Static
@@ -33,8 +36,34 @@ app.use(serve(assets));
 // ------------------------------------------------
 // Define Routes
 // ------------------------------------------------
+// app.use(function *(){
+//   serve( views )
+// });
+
+// router.get('/add', function* () {
+//   console.log('Router Get');
+//     serve( indexTemplate );
+//      if (!this.status) this.throw(404)
+// })
+
+
+// router.get('/', (ctx, next) => {
+//   console.log(ctx.router);
+//   // ctx.router available
+// });
+// router.redirect('*', '/');
+
+// router.get('*', function(ctx, next){
+//   console.log(ctx.params);
+//   serve(indexTemplate);
+//   // response.sendfile('./public/index.html');
+// });
+
+// TODO: You need to serve index.html here.  Do Not Redirect.
 app.use(function *(){
-  serve( views )
+  // this.body = 'Invalid URL!!!';
+  // or redirect etc
+  this.redirect('/');
 });
 
 // ------------------------------------------------
