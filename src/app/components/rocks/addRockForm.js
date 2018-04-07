@@ -4,7 +4,6 @@ import { Field, reduxForm, reducer as formReducer } from 'redux-form';
 import PropTypes from 'prop-types';
 import { Input } from '../formComponents';
 import { addRock } from '../../store/rocks/actions'
-import * as rocksSelectors from '../../store/rocks/reducer';
 
 class RockForm extends Component {
   constructor(props){

@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 
 // Reducers
 import { reducer as form } from 'redux-form';
-import rocks from './rocks/reducer';
+import rocks from './rocks/reducers';
 
 // Middle Ware
 const middleWare = [thunk];

@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import * as types from './actionTypes';
 import Immutable from 'seamless-immutable';
 
@@ -35,19 +34,4 @@ export default function reduce(state = initialState, action = {}) {
     default:
       return state;
   }
-}
-
-// Selectors
-export function getRocks(state) {
-  const activeRocks = state.rocks.activeRocks;
-  const rocksArray = _.keys(activeRocks);
-  return [activeRocks, rocksArray];
-}
-
-export function getRocksByName(state) {
-  return state.rocks.activeRocks;
-}
-
-export function getRocksNameArray(state) {
-  return _.keys(state.rocks.activeRocks);
 }
