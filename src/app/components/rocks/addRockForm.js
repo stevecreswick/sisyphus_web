@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import autoBind from 'react-autobind';
 import { connect, combineReducers, bindActionCreators } from 'redux';
 import { Field, reduxForm, reducer as formReducer } from 'redux-form';
 import PropTypes from 'prop-types';
@@ -10,7 +9,6 @@ import * as rocksSelectors from '../../store/rocks/reducer';
 class RockForm extends Component {
   constructor(props){
     super(props);
-    autoBind(this);
   }
 
   handleSubmit = data => this.props.onSubmit( data, this.context.router );

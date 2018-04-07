@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import autoBind from 'react-autobind';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as rocksActions from '../store/rocks/actions';
@@ -8,9 +7,8 @@ import PropTypes from 'prop-types';
 import Rocks from '../components/rocks/rocks';
 
 class Tartarus extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    autoBind(this);
   }
 
   componentDidMount() {
@@ -33,27 +31,13 @@ class Tartarus extends Component {
       <p>Loading...</p>
     )
   }
-
-  renderRow(rockName, rock ) {
-    return(
-      <ListRow
-        className="rock-row"
-        rowId={rockName}>
-        <h3>
-          {rock.name}
-        </h3>
-        <p>{rock.message}</p>
-      </ListRow>
-    )
-  }
 }
 
 function mapStateToProps(state) {
-  const [ activeRocks, activeRocksArray ] = rocksSelectors.getRocks(state);
+  const [ activeRocks ] = rocksSelectors.getRocks(state);
 
   return {
-    activeRocks,
-    activeRocksArray
+    activeRocks
   };
 }
 
