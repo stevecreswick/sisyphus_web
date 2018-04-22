@@ -22,15 +22,22 @@ export function addRock( rock, router ) {
       const newRock = post.data[ 0 ];
       dispatch({ type: types.CREATE_ROCK_SUCCESS, newRock });
     } catch(error) {
-      console.error(error);
+      console.error(error)
     }
   }
 }
 
-// TODO: Add dispatches to these functions
-export function editRock( rock ) {
-  console.log('edit');
-  dispatch({ type: types.EDIT_ROCK_SUCCESS, rock });
+export function editRock(id, edited ) {
+  return async(dispatch, getState) => {
+    try {
+      const update = await api.patch(`/rocks/${id}`, { 'name': edited });
+      const updatedRock = update.data[0];
+      dispatch({ type: types.EDIT_ROCK_SUCCESS, updatedRock });
+    }
+    catch(error) {
+      console.error(error)
+    }
+  }
 }
 
 export function deleteRock( rock ) {
