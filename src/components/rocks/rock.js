@@ -5,10 +5,9 @@ import EditableText from '../EditableText';
 
 export default class Rock extends Component {
   static propTypes = {
-    rock: PropTypes.object.isRequired,
-    editRock: PropTypes.func.isRequired,
-    deleteRock: PropTypes.func.isRequired,
-    completeRock: PropTypes.func.isRequired
+    resource: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
+    // editRock, completeRock, deleteRock
   }
 
   state = {
@@ -20,9 +19,10 @@ export default class Rock extends Component {
   }
 
   render() {
-    const { rock, completeRock, editRock, deleteRock } = this.props;
+    const { resource, actions } = this.props;
+
     const buttonClass = classnames( {
-      'active': rock.active
+      'active': resource.active
     } );
 
     let element = (
@@ -30,15 +30,15 @@ export default class Rock extends Component {
         <div className="row">
           <button
             className={buttonClass}
-            onClick={ () => completeRock(rock) }
+            onClick={ () => actions.completeRock(resource) }
           />
         </div>
 
         <div className="row">
           <EditableText
-            identifier={rock.id}
-            concern={rock.name}
-            onSave={editRock}>
+            identifier={resource.id}
+            concern={resource.name}
+            onSave={actions.editRock}>
           </EditableText>
         </div>
       </div>
@@ -46,8 +46,7 @@ export default class Rock extends Component {
 
     return (
       <li className={classnames({
-        completed: !rock.active,
-        editing: this.state.editing
+        completed: !resource.active
       })}>
         {element}
       </li>
