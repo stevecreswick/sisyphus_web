@@ -5,6 +5,27 @@ import * as rocksActions from '../store/rocks/actions';
 import * as rockSelectors from '../store/rocks/selectors';
 import PropTypes from 'prop-types';
 import Rocks from '../components/rocks/rocks';
+import Rock from '../components/rocks/rock';
+import ResourceList from '../components/ResourceList';
+import Layout from '../components/Layout';
+import { StyleSheet, css } from 'aphrodite';
+
+const styles = StyleSheet.create({
+  layout: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    flexDirection: 'row'
+  },
+  middle: {
+    width: 'calc(100% - 320px)',
+    backgroundColor: 'cornflowerblue'
+  },
+  leftRail: {
+    width: '320px',
+    backgroundColor: 'teal'
+  }
+});
 
 class Tartarus extends Component {
   constructor(props) {
@@ -18,11 +39,20 @@ class Tartarus extends Component {
   render() {
     if (!this.props.activeRocks) return this.renderLoading();
     return (
-      <div className="rocks-screen">
-        <Rocks rocks={this.props.activeRocks}
-               actions={this.props.actions}
-        />
-      </div>
+      <Layout>
+        <div className={css(styles.layout)}>
+          <div className={css(styles.leftRail)}>
+            <ResourceList
+              resources={this.props.activeRocks}
+              actions={this.props.actions}
+              component={Rock}>
+            </ResourceList>
+          </div>
+          <div className={css(styles.middle)}>
+            Working Space
+        </div>
+        </div>
+      </Layout>
     )
   }
 

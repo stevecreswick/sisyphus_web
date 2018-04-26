@@ -18,9 +18,23 @@ export default function reduce(state = initialState, action = {}) {
         activeRocks: [...state.activeRocks, action.newRock ]
       });
 
+    case types.EDIT_ROCK_SUCCESS:
+      const updateName = (updatedRock) => {
+        return state.activeRocks.map(rock =>
+          rock.id === updatedRock.id ?
+            { ...rock, name: updatedRock.name } :
+            rock
+        );
+      };
+
+      return state.merge({
+        ...state,
+        activeRocks: updateName(action.updatedRock)
+      });
+
     case types.COMPLETE_ROCK_SUCCESS:
-      const updateRock = ( updatedRock ) => {
-        return state.activeRocks.map( rock =>
+      const updateCompletion = (updatedRock) => {
+        return state.activeRocks.map(rock =>
           rock.id === updatedRock.id ?
             { ...rock, active: !rock.active } :
             rock
@@ -29,7 +43,7 @@ export default function reduce(state = initialState, action = {}) {
 
       return state.merge({
         ...state,
-        activeRocks: updateRock( action.updatedRock )
+        activeRocks: updateCompletion( action.updatedRock )
       });
     default:
       return state;

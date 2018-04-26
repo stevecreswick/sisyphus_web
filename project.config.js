@@ -8,7 +8,7 @@ module.exports = {
   BASE: __dirname,
 
   /** The name of the directory containing the application source code */
-  SRC: 'src/app',
+  SRC: 'src',
 
   /** The file name of the application's entry point */
   ENTRY: 'main',
