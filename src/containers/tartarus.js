@@ -14,15 +14,15 @@ const styles = StyleSheet.create({
   layout: {
     display: 'flex',
     alignItems: 'flex-start',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     flexDirection: 'row'
   },
   middle: {
-    width: 'calc(100% - 300px)',
+    width: 'calc(100% - 320px)',
     backgroundColor: 'cornflowerblue'
   },
   leftRail: {
-    width: '300px',
+    width: '320px',
     backgroundColor: 'teal'
   }
 });
