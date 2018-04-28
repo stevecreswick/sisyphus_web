@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import EditableText from '../EditableText';
+import ResourceForm from '../ResourceForm'
 
 export default class Rock extends Component {
   static propTypes = {
@@ -21,16 +22,16 @@ export default class Rock extends Component {
   render() {
     const { resource, actions } = this.props;
 
-    const buttonClass = classnames( {
+    const buttonClass = classnames({
       'active': resource.active
-    } );
+    });
 
     let element = (
       <div className="rock">
         <div className="row">
           <button
             className={buttonClass}
-            onClick={ () => actions.completeRock(resource) }
+            onClick={() => actions.completeRock(resource)}
           />
         </div>
 
@@ -40,6 +41,22 @@ export default class Rock extends Component {
             concern={resource.name}
             onSave={actions.editRock}>
           </EditableText>
+        </div>
+
+        <div className="row">
+          Add +
+        </div>
+
+        <div className="row">
+          <ResourceForm
+            identifier={resource.name + resource.id}
+            parentId={resource.id}
+            onSubmit={actions.addRock}>
+          </ResourceForm>
+        </div>
+
+        <div className="row">
+          Resource List
         </div>
       </div>
     );

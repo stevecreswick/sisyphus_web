@@ -1,2 +1,2 @@
 import ResourceList from './ResourceList'
-module.exports = ResourceList
+export default ResourceList

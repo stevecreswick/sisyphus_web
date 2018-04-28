@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import * as rocksActions from '../store/rocks/actions';
 import * as rockSelectors from '../store/rocks/selectors';
 import PropTypes from 'prop-types';
-import Rocks from '../components/rocks/rocks';
-import Rock from '../components/rocks/rock';
+import Rock from '../components/Rock';
 import ResourceList from '../components/ResourceList';
 import Layout from '../components/Layout';
 import { StyleSheet, css } from 'aphrodite';
@@ -50,7 +49,7 @@ class Tartarus extends Component {
           </div>
           <div className={css(styles.middle)}>
             Working Space
-        </div>
+          </div>
         </div>
       </Layout>
     )

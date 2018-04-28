@@ -15,7 +15,6 @@ class ResourceList extends React.Component {
 
   render() {
     const { component, resources, actions } = this.props;
-    console.log(resources);
     
     return (
       <section className="resources">
