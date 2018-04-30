@@ -7,8 +7,9 @@ export function fetchRocks() {
   return async(dispatch, getState) => {
     try {
       const rocks = await api.fetch('/rocks');
-      const rocksByName = rocks.data.filter( (rock) => rock.name);
-      dispatch({ type: types.ROCKS_FETCHED, rocksByName });
+      // const rocksByName = rocks.data.filter( (rock) => rock.name);
+
+      dispatch({ type: types.ROCKS_FETCHED, rocks });
     } catch (error) {
       console.error(error);
     }
@@ -45,7 +46,6 @@ export function deleteRock( rock ) {
 }
 
 export function completeRock( rock ) {
-  console.log('COMPLETing ', rock);
   return async(dispatch, getState) => {
     try {
       const update = await api.patch(`/rocks/${ rock.id }`, { 'active': !rock.active } );
@@ -56,6 +56,18 @@ export function completeRock( rock ) {
     catch(err) {
       console.log('HERE');
       console.error(err);
+    }
+  }
+}
+
+export function createChild(rock) {
+  return async (dispatch, getState) => {
+    try {
+      const post = await api.post('/rocks', rock);
+      const newRock = post.data[0];
+      dispatch({ type: types.CREATE_ROCK_SUCCESS, newRock });
+    } catch (error) {
+      console.error(error)
     }
   }
 }

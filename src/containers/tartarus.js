@@ -36,13 +36,13 @@ class Tartarus extends Component {
   }
 
   render() {
-    if (!this.props.activeRocks) return this.renderLoading();
+    if (!this.props.rocks) return this.renderLoading();
     return (
       <Layout>
         <div className={css(styles.layout)}>
           <div className={css(styles.leftRail)}>
             <ResourceList
-              resources={this.props.activeRocks}
+              resources={this.props.rocks.resourceList}
               actions={this.props.actions}
               component={Rock}>
             </ResourceList>
@@ -63,10 +63,10 @@ class Tartarus extends Component {
 }
 
 function mapStateToProps(state) {
-  const [ activeRocks ] = rockSelectors.getRocks(state);
+  const [ rocks ] = rockSelectors.getRocks(state);
 
   return {
-    activeRocks
+    rocks
   };
 }
 

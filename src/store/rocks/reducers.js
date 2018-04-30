@@ -2,25 +2,25 @@ import * as types from './actionTypes';
 import Immutable from 'seamless-immutable';
 
 const initialState = Immutable({
-  activeRocks: []
+  resourceList: []
 });
 
 export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
     case types.ROCKS_FETCHED:
       return state.merge({
-        activeRocks: action.rocksByName
+        resourceList: action.rocks.data
       });
 
     case types.CREATE_ROCK_SUCCESS:
       return state.merge({
         ...state,
-        activeRocks: [...state.activeRocks, action.newRock ]
+        resourceList: [...state.resourceList, action.newRock ]
       });
 
     case types.EDIT_ROCK_SUCCESS:
       const updateName = (updatedRock) => {
-        return state.activeRocks.map(rock =>
+        return state.rocks.map(rock =>
           rock.id === updatedRock.id ?
             { ...rock, name: updatedRock.name } :
             rock
@@ -29,12 +29,12 @@ export default function reduce(state = initialState, action = {}) {
 
       return state.merge({
         ...state,
-        activeRocks: updateName(action.updatedRock)
+        resourceList: updateName(action.updatedRock)
       });
 
     case types.COMPLETE_ROCK_SUCCESS:
       const updateCompletion = (updatedRock) => {
-        return state.activeRocks.map(rock =>
+        return state.resourceList.map(rock =>
           rock.id === updatedRock.id ?
             { ...rock, active: !rock.active } :
             rock
@@ -43,7 +43,7 @@ export default function reduce(state = initialState, action = {}) {
 
       return state.merge({
         ...state,
-        activeRocks: updateCompletion( action.updatedRock )
+        resourceList: updateCompletion( action.updatedRock )
       });
     default:
       return state;

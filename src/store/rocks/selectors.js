@@ -1,15 +1,15 @@
 import _ from 'lodash';
 
 export function getRocks(state) {
-  const activeRocks = state.rocks.activeRocks;
-  const rocksArray = _.keys(activeRocks);
-  return [activeRocks, rocksArray];
+  const rocks = state.rocks;
+  const rockKeys = _.keys(rocks);
+  return [ rocks, rockKeys ];
 }
 
 export function getRocksByName(state) {
-  return state.rocks.activeRocks;
+  return state.rocks;
 }
 
 export function getRocksNameArray(state) {
-  return _.keys(state.rocks.activeRocks);
+  return _.keys(state.rocks);
 }

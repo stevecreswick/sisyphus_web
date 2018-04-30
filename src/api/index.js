@@ -1,4 +1,5 @@
 const API = process.env.API_URL || 'http://localhost:8008/api/v1';
+import { Parser } from './resources/parser'
 
 function headers( additionalHeaders ) {
   // const token = JSON.parse(localStorage.getItem('token'));
@@ -11,7 +12,9 @@ function headers( additionalHeaders ) {
 
 function parseResponse(response) {
   return response.json().then(
-    ( json ) => !response.ok ? Promise.reject( json ) : json
+    ( json ) => !response.ok ? 
+      Promise.reject( json ) : 
+      new Parser( json )
   );
 }
 
